@@ -1,8 +1,9 @@
 package com.example.countries
 
-class Country : ArrayList<CountryItem>()
+//class Countries : Any()
+class Countries : ArrayList<Country>()
 
-data class CountryItem(
+data class Country(
     val capital: String,
     val code: String,
     val currency: Currency,
