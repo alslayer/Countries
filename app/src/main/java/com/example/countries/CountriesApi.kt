@@ -9,7 +9,7 @@ const val BASE_URL = "https://gist.githubusercontent.com/peymano-wmt/32dcb892b06
 
 interface CountriesApi {
     @GET("countries.json")
-    fun getCountries() : Call<Any>
+    fun getCountries() : Call<Countries>
 
     companion object {
         operator fun  invoke() : CountriesApi{

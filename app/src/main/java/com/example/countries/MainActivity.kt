@@ -23,32 +23,25 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        CountriesApi().getCountries().enqueue(object: Callback<Any> {
-
-            override fun onFailure(call: Call<Any>, t: Throwable) {
+        CountriesApi().getCountries().enqueue(object: Callback<Countries> {
+            override fun onFailure(call: Call<Countries>, t: Throwable) {
                 Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                 println("Error: " + t.message)
             }
 
-            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+            override fun onResponse(call: Call<Countries>, response: Response<Countries>) {
                 val countries = response.body()
-
-                println("Response Code: " + response.code())
-                println("Response: " + response.body())
-
                 countries?.let {
                     showCountries(it)
                 }
             }
-
         })
     }
 
-    private fun showCountries(countries: Any) {
+    private fun showCountries(countriesResponse: Countries) {
         val recyclerViewMovies = findViewById<RecyclerView>(R.id.recyclerViewCountires)
         recyclerViewMovies.layoutManager = LinearLayoutManager(this)
-        recyclerViewMovies.adapter = CountriesAdapter(countries)
-        var cat = "placehoder"
+        recyclerViewMovies.adapter = CountriesAdapter(countriesResponse)
     }
 
 }
